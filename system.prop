@@ -19,6 +19,9 @@ dalvik.vm.heapsize=512m
 hw.lcd.density=480
 ro.config.hw_navigationbar=true
 ro.sf.lcd_density=480
+ro.hwui.r_buffer_cache_size=8
+debug.hwui.render_dirty_regions=false
+debug.sf.no_hw_vsync=1
 
 # Graphics
 ro.bq.gpu_to_cpu_unsupported=1
@@ -73,6 +76,7 @@ ro.config.hw_music_lp=true
 ro.config.client_number=1
 ro.config.modem_number=1
 ro.telephony.isHisiRIL=true
+ro.huaweiril=true
 
 # Sdcard
 persist.fw.force_adoptable=true
