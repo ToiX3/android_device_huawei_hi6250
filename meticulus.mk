@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 Jonathan Jason Dennis (theonejohnnyd@gmail.com)
+# Copyright 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,31 +14,30 @@
 # limitations under the License.
 #
 
+# This contains the module build definitions for the hardware-specific
+# components for this device.
+#
+# As much as possible, those components should be built unconditionally,
+# with device-specific names to avoid collisions, to avoid device-specific
+# bitrot and build breakages. Building a component unconditionally does
+# *not* include it on all devices, so it is safe even with hardware-specific
+# components.
+
 ifeq ($(I_AM_METICULUS), true)
-# Use my custom build ninja that prints to screen sequentially
-# so you can see whats going on.
-# Resolve depenancy issue: sudo apt-get install libc++-dev
-$(shell echo "Using Meticulus's Ninja" >&2)
-$(shell cp -f $(LOCAL_PATH)/prebuilt/ninja prebuilts/ninja/linux-x86/ninja)
+$(shell echo "Using Huawei Preferences" >&2)
 
-# Meticulus recovery init rc
+# Recovery
 PRODUCT_COPY_FILES += \
-        $(LOCAL_PATH)/recovery/init.recovery.meticulus.rc:root/init.recovery.meticulus.rc
+    $(LOCAL_PATH)/recovery/init.recovery.meticulus.rc:root/init.recovery.meticulus.rc \
+    $(LOCAL_PATH)/recovery/data-formatter.sh:install/bin/data-formatter.sh \
+    $(LOCAL_PATH)/recovery/finalize.sh:install/bin/finalize.sh \
+    $(LOCAL_PATH)/recovery/stock-check.sh:install/bin/stock-check.sh \
 
-# Meticulus recovery checks
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/recovery/stock-check.sh:install/bin/stock-check.sh \
-	$(LOCAL_PATH)/recovery/finalize.sh:install/bin/finalize.sh \
-	$(LOCAL_PATH)/recovery/data-formatter.sh:install/bin/data-formatter.sh
+# Release Tools
+TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/hi6250
 
-
-# Meticulus Settings Integration
+# Volume Input
 PRODUCT_PACKAGES += \
-    CodinalteParts \
     volumeinput
 
-# Meticulus Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/huawei/hi6250
-else
-#$(shell cd prebuilts/build-tools && git checkout linux-x86/bin/ninja)
 endif

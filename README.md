@@ -1,17 +1,5 @@
-# LineageOS 14.1 for the Huawei P9 Lite (hi6250)
+# Honor / Huawei HI6250 Device Tree
 
-### Kernel
-This device tree is intended to be used with this kernel repo:
-
-See: https://github.com/Meticulus/android_kernel_huawei_hi6250
-
-branch: master
-### Vendor
-This device tree is intented to be used with this vendor repo
-
-https://github.com/Meticulus/android_vendor_huawei_hi6250
-
-branch: master
 # How To Build
 This "How to" is scoped for new builders with moderate PC skills.
 
@@ -55,8 +43,8 @@ Execute the following commands in a linux terminal:
 
 Terminal:
 ```bash
-mkdir /home/$USER/los
-cd /home/$USER/los
+mkdir /home/$USER/LineageOS-14.1
+cd /home/$USER/LineageOS-14.1
 repo init -u git://github.com/LineageOS/android.git -b cm-14.1
 repo sync
 ```
@@ -66,39 +54,23 @@ WARNING: There may be times, towards the end when it seem like, the download is 
 
 The local manifest is different for every device. It contains those repos that are device specific, where as the ROM code you just "repo sync'd" is code that is general to any device.
 
-NOTE: Meticulus Development also builds some extra features and functions into its builds and we include the source for those builds in this tree as well.
-
 Execute the following commands:
 
 Terminal:
 ```bash
-mkdir /home/$USER/los/.repo/local_manifests
-gedit /home/$USER/los/.repo/local_manifests/hi6250.xml
+mkdir /home/$USER/LineageOS-14.1/.repo/local_manifests
+gedit /home/$USER/LineageOS-14.1/.repo/local_manifests/hi6250.xml
 ```
 Copy the following into hi6250.xml, save and close.
 ```bash
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="Meticulus/android_kernel_huawei_hi6250" path="kernel/huawei/hi6250" remote="github" revision="master"/>
-  <project name="Meticulus/android_device_huawei_hi6250" path="device/huawei/hi6250" remote="github" revision="master"/>
-  <project name="Meticulus/android_vendor_huawei_hi6250" path="vendor/huawei/hi6250" remote="github" revision="master"/>
+  <project name="hak86/android_device_huawei_hi6250" path="device/huawei/hi6250" remote="github" revision="cm-14.1"/>
+  <project name="hak86/android_kernel_huawei_prague" path="kernel/huawei/hi6250" remote="github" revision="7.x"/>
+  <project name="hak86/android_vendor_huawei_hi6250" path="vendor/huawei/hi6250" remote="github" revision="cm-14.1"/>
   <project name="LineageOS/android_vendor_nxp-nfc_opensource_Nfc" path="vendor/nxp-nfc/opensource/Nfc" remote="github" revision="cm-14.1"/>
   <project name="LineageOS/android_vendor_nxp-nfc_opensource_libnfc-nci" path="vendor/nxp-nfc/opensource/libnfc-nci" remote="github" revision="cm-14.1"/>
   <project name="LineageOS/android_vendor_nxp-nfc_opensource_frameworks" path="vendor/nxp-nfc/opensource/frameworks" remote="github" revision="cm-14.1"/>
-</manifest>
-```
-
-Alternatively, if you would like to include Meticulus Development's "extras" then copy the following into hi6250.xml, save and close.
-```bash
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <project name="Meticulus/android_kernel_huawei_hi6250" path="kernel/huawei/hi6250" remote="github" revision="master"/>
-  <project name="Meticulus/android_device_huawei_hi6250" path="device/huawei/hi6250" remote="github" revision="master"/>
-  <project name="Meticulus/android_vendor_huawei_hi6250" path="vendor/huawei/hi6250" remote="github" revision="master"/>
-  <project name="LineageOS/android_vendor_nxp-nfc_opensource_Nfc" path="vendor/nxp-nfc/opensource/Nfc" remote="github" revision="cm-14.1"/>
-  <project name="LineageOS/android_vendor_nxp-nfc_opensource_libnfc-nci" path="vendor/nxp-nfc/opensource/libnfc-nci" remote="github" revision="cm-14.1"/>
-  <project name="LineageOS/android_vendor_nxp-nfc_opensource_frameworks" path="vendor/nxp-nfc/opensource/frameworks" remote="github" revision="cm-14.1"/>
-  <project name="Meticulus/android_packages_apps_CodinalteParts" path="packages/apps/CodinalteParts" remote="github" revision="hi6250"/>
 </manifest>
 ```
 
@@ -106,7 +78,7 @@ Execute the following commands:
 
 Terminal:
 ```bash
-cd /home/$USER/los
+cd /home/$USER/LineageOS-14.1
 repo sync
 ```
 
@@ -158,7 +130,7 @@ Execute the following commands:
 
 Terminal:
 ```bash
-cd /home/$USER/los/device/huawei/hi6250/patches && ./patch.sh
+cd /home/$USER/LineageOS-14.1/device/huawei/hi6250/patches && ./patch.sh
 ```
 
 NOTE: Now you have everything that you need to build LineageOS 14.1 for your hi6250 device. Build times depend on your PC's performance specifications. In the following terminal command "-j8" represents the number of concurrent tasks to execute. For low specs machines (such as mine) lowering the value to "-j3" may help speed things up. For high spec'd machines raising the value may speed things up.
@@ -168,7 +140,7 @@ Execute the following commands:
 
 Terminal:
 ```bash
-cd /home/$USER/los
+cd /home/$USER/LineageOS-14.1
 . build/envsetup.sh
 lunch lineage_hi6250-userdebug
 make -j8 bacon

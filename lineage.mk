@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 Jonathan Jason Dennis (theonejohnnyd@gmail.com)
+# Copyright 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,25 +14,33 @@
 # limitations under the License.
 #
 
-# Common overlay
+# This contains the module build definitions for the hardware-specific
+# components for this device.
+#
+# As much as possible, those components should be built unconditionally,
+# with device-specific names to avoid collisions, to avoid device-specific
+# bitrot and build breakages. Building a component unconditionally does
+# *not* include it on all devices, so it is safe even with hardware-specific
+# components.
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
+
+# Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/cm
 
-# Inherit cm
-$(call inherit-product, device/huawei/hi6250/cm.mk)
+# Device
+$(call inherit-product, device/huawei/hi6250/device.mk)
 
+# LineageoS
+$(call inherit-product-if-exists, vendor/cm/config/common_full_phone.mk)
+
+PRODUCT_DEVICE := hi6250
 PRODUCT_NAME := lineage_hi6250
+PRODUCT_BRAND := huawei
+PRODUCT_MODEL := hi6250
+PRODUCT_MANUFACTURER := HUAWEI
 
-PRODUCT_PACKAGES += HuaweiSettings
-
-#ifeq ($(AUTOPATCH),true)
-#    $(shell cd device/huawei/hi6250/patches 2>&1 > /dev/null && ./patch.sh lineage >&2)
-#else
-#    $(shell echo ---------------------------------------------------------------- >&2)
-#    $(shell echo AUTOPATCH not enabled... >&2)
-#    $(shell echo lineage: run manually: \"cd device/huawei/hi6250/patches \&\& ./patch.sh lineage\">&2)
-#    $(shell echo resurrection remix: run manually: \"cd device/huawei/hi6250/patches \&\& ./patch.sh rr\">&2)
-#    $(shell echo OR: >&2)
-#    $(shell echo enable autopatch: \"export AUTOPATCH=true \&\& lunch $(PRODUCT_NAME)-userdebug\">&2)
-#    $(shell echo ---------------------------------------------------------------- >&2)
-#endif
-
+# Meticulus
+$(call inherit-product, device/huawei/hi6250/meticulus.mk)
