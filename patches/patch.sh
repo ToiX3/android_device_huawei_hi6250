@@ -26,7 +26,7 @@ if [[ "$ROM" == "" ]]; then
 		if [[ $(cat vendor/cm/README.mkdn | grep -c "Resurrection Remix") -gt 0 ]]; then
 			ROM="rr"
 		else
-			ROM="cm"
+			ROM="lineage"
 		fi
 	elif [[ -e vendor/slim ]]; then
 		ROM="slim"
