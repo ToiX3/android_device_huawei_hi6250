@@ -134,6 +134,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.hi6250 \
 
+# Prebuilts
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,${LOCAL_PATH}/prebuilts,system/)
 
