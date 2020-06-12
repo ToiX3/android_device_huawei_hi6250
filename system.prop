@@ -66,6 +66,8 @@ persist.sys.sr_google_avc_enc=1
 ro.config.hw_music_lp=true
 
 # RIL
+ro.config.client_number=1
+ro.config.modem_number=1
 ro.telephony.isHisiRIL=true
 
 # Sdcard
