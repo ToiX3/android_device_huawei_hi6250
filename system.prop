@@ -65,6 +65,9 @@ persist.sys.google_avc_enc=0
 persist.sys.sr_google_avc_enc=1
 ro.config.hw_music_lp=true
 
+# RIL
+ro.telephony.isHisiRIL=true
+
 # Sdcard
 persist.fw.force_adoptable=true
 
