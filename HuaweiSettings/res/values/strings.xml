@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Huawei Preferences</string>
+    <string name="app_name">HI6250 Settings</string>
 
     <!-- Preference groups -->
     <string name="ril_settings_title">RIL</string>
@@ -55,10 +55,6 @@
     <string name="pref_huawei_glovemode_title">Gloves mode</string>
     <string name="pref_huawei_glovemode_description">Should higher the touchscreen sensitivity.</string>
     <string name="pref_huawei_glovemode_key" translatable="false">pref_huawei_glovemode</string>
-
-    <string name="pref_huawei_usbhostmode_title">USB Host mode</string>
-    <string name="pref_huawei_usbhostmode_description">Turns your device into USB host. Also known as USB OTG.</string>
-    <string name="pref_huawei_usbhostmode_key" translatable="false">pref_huawei_usbhostmode</string>
 
     <!-- Menu -->
     <string name="action_reboot_title">Reboot</string>

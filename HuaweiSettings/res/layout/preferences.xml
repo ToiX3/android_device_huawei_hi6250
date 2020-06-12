@@ -70,10 +70,6 @@
             android:key="@string/pref_huawei_glovemode_key"
             android:summary="@string/pref_huawei_glovemode_description"
             android:title="@string/pref_huawei_glovemode_title" />
-        <SwitchPreference
-            android:key="@string/pref_huawei_usbhostmode_key"
-            android:summary="@string/pref_huawei_usbhostmode_description"
-            android:title="@string/pref_huawei_usbhostmode_title" />
     </PreferenceCategory>
 
 </PreferenceScreen>

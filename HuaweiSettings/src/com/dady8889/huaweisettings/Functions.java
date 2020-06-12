@@ -13,7 +13,6 @@ public class Functions {
 
     private static final String FILE_EASY_WAKEUP_GESTURE = "/sys/devices/platform/huawei_touch/easy_wakeup_gesture";
     private static final String FILE_GLOVE_MODE = "/sys/devices/platform/huawei_touch/touch_glove";
-    private static final String FILE_USB_HOST = "/sys/devices/platform/ff100000.hisi_usb/plugusb";
 
     //region Sys
     public static String SysRead(String fileName) {
@@ -102,24 +101,6 @@ public class Functions {
             } else {
                 Log.i(TAG, "Disabling Glove Mode");
                 SysWrite(FILE_GLOVE_MODE, "0");
-            }
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-    //endregion
-
-    //region USB OTG
-    public static boolean IsUSBHostModeAvailable() {
-        return SysIsAvailable(FILE_USB_HOST);
-    }
-
-    public static void SetUSBHostModeValue(boolean on) {
-        try {
-            if (on) {
-                Log.i(TAG, "Enabling USB Host Mode");
-                SysWrite(FILE_USB_HOST, "hoston");
-            } else {
-                Log.i(TAG, "Disabling USB Host Mode");
-                SysWrite(FILE_USB_HOST, "hostoff");
             }
         } catch (Exception e) { e.printStackTrace(); }
     }

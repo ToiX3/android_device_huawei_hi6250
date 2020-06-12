@@ -207,19 +207,6 @@ public class SettingsActivity extends SettingsDrawerActivity {
             } else {
                 switchPref.setEnabled(false);
             }
-
-            // Set Other/USB Host mode
-            switchPref = (SwitchPreference)findPreference("pref_huawei_usbhostmode");
-            functionAvailable = Functions.IsUSBHostModeAvailable();
-            if (functionAvailable) {
-                boolean savedValue = preferenceManager.getBoolean("pref_huawei_usbhostmode", false);
-                if (savedValue) {
-                    switchPref.setChecked(savedValue);
-                    Functions.SetUSBHostModeValue(savedValue);
-                }
-            } else {
-                switchPref.setEnabled(false);
-            }
         }
 
         @Override
@@ -274,11 +261,6 @@ public class SettingsActivity extends SettingsDrawerActivity {
                 case R.string.pref_huawei_glovemode_key: {
                     Functions.SetGloveModeValue(newValue);
                     editor.putBoolean("pref_huawei_glovemode", newValue);
-                    break;
-                }
-                case R.string.pref_huawei_usbhostmode_key: {
-                    Functions.SetUSBHostModeValue(newValue);
-                    editor.putBoolean("pref_huawei_usbhostmode", newValue);
                     break;
                 }
             }
