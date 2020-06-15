@@ -24,7 +24,7 @@
 # components.
 
 # 64 Bit
-ANDROID_64 :=true
+ANDROID_64 := true
 TARGET_SUPPORTS_32_BIT_APPS := true
 TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_USES_64_BIT_BINDER := true
@@ -49,6 +49,9 @@ BOARD_USES_ALSA_AUDIO := true
 
 # Board
 TARGET_BOARD_PLATFORM := hi6250
+
+# Bootanimation
+TARGET_BOOTANIMATION_HALF_RES := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := hisi
@@ -97,9 +100,6 @@ COMMON_SHIMS := '/hwvendor/lib/hw/audio.primary.hisi.so|libshim.so:/hwvendor/lib
 # Linker
 LD_SHIM_LIBS := $(COMMON_SHIMS):$(BERLIN_SHIMS):$(BOND_SHIMS):$(DALLAS_SHIMS):$(NEMO_SHIMS):$(PRAGUE_SHIMS):$(VENUS_SHIMS):$(WARSAW_SHIMS)
 
-## Uncomment to see LD_SHIM_LIBS var
-#$(shell echo $(LD_SHIM_LIBS) >&2)
-
 # Kernel
 BOARD_KERNEL_BASE := 0x00478000
 BOARD_KERNEL_CMDLINE := loglevel=4 coherent_pool=512K page_tracker=on slub_min_objects=12 androidboot.selinux=permissive
@@ -121,9 +121,6 @@ BOARD_NFC_CHIPSET := pn548
 NXP_CHIP_TYPE := 2
 TARGET_USES_NQ_NFC := true
 
-# OTA
-# BLOCK_BASED_OTA := false
-
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_FLASH_BLOCK_SIZE := 4096
@@ -142,13 +139,7 @@ BOARD_PROVIDES_RILD := true
 SIM_COUNT := 2
 
 # Sepolicy
-BOARD_SEPOLICY_DIRS += \
-	device/huawei/hi6250/sepolicy
-
-ifneq ($(TARGET_PRODUCT), aosp_hi6250)
-BOARD_SEPOLICY_DIRS += \
-	device/huawei/hi6250/cm_sepolicy
-endif
+BOARD_SEPOLICY_DIRS := device/huawei/hi6250/sepolicy
 
 # WIFI
 BOARD_HOSTAPD_DRIVER := NL80211

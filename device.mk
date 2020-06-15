@@ -31,11 +31,11 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # ADB
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.adb.secure=0 \
-    ro.zygote=zygote64_32 \
     ro.secure=0 \
-    sys.usb.configfs=1 \
-    sys.usb.controller=hisi-usb-otg
+    ro.allow.mock.location=1 \
+    ro.adb.secure=0 \
+    persist.sys.usb.config=adb \
+    sys.usb.configfs=1
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -55,6 +55,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+# Configs
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,${LOCAL_PATH}/configs,system/)
+    
 # Graphics
 PRODUCT_PACKAGES += \
     hwcomposer.hi6250 \
@@ -104,7 +108,7 @@ PRODUCT_PACKAGES += \
     Tag \
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/common
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -133,10 +137,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.hi6250 \
 
-# Prebuilts
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${LOCAL_PATH}/prebuilts,system/)
-
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/huawei/hi6250/rootdir/,root/)
@@ -162,9 +162,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hostapd_cli
 
-# Wizard
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.config.sync=yes
-    ro.setupwizard.enable_bypass=1 \
-    ro.setupwizard.mode=OPTIONAL \
+# Zygote
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.zygote=zygote64_32 
+    
+    

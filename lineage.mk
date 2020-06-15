@@ -27,17 +27,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
 
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/cm
-
 # Device
 $(call inherit-product, device/huawei/hi6250/device.mk)
 
-# LineageoS
+# LineageOS
 $(call inherit-product-if-exists, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_DEVICE := hi6250
 PRODUCT_NAME := lineage_hi6250
 PRODUCT_BRAND := huawei
 PRODUCT_MODEL := hi6250
-PRODUCT_MANUFACTURER := HUAWEI
+PRODUCT_MANUFACTURER := huawei
