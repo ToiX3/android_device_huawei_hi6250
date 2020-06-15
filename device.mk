@@ -61,8 +61,7 @@ PRODUCT_PACKAGES += \
 
 # Hardware
 PRODUCT_PACKAGES += \
-    emui5_vendor_symlinks \
-    metiotgd \
+    emui5_vendor_symlinks
 
 # DeviceSettings
 PRODUCT_PACKAGES += \
@@ -145,7 +144,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/init.recovery.hi6250.rc:root/init.recovery.hi6250.rc \
     $(LOCAL_PATH)/recovery/init.recovery.hi6250.usb.rc:root/init.recovery.hi6250.usb.rc \
-    $(LOCAL_PATH)/recovery/init.recovery.meticulus.rc:root/init.recovery.meticulus.rc \
     $(LOCAL_PATH)/recovery/init.recovery.usb.rc:root/init.recovery.usb.rc
 
 # RIL

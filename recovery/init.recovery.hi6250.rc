@@ -1,6 +1,5 @@
 import /init.recovery.huawei.rc
 import /init.recovery.hi6250.usb.rc
-import /init.recovery.meticulus.rc
 
 on property:sys.stock=1
     start teecd
@@ -9,7 +8,6 @@ on property:sys.stock=1
 
 on init
     symlink /dev/block/platform/hi_mci.0 /dev/block/bootdevice
-    start fstabSwitcher
 
 service teecd /sbin/teecd
     user root
@@ -23,12 +21,6 @@ service volisnotd /sbin/volisnotd -m
     group root
     disabled
     seclabel u:r:teecd:s0
-
-service fstabSwitcher /sbin/fstabSwitcher
-    user root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
 
 on property:vold.decrypt=trigger_shutdown_framework
     class_reset server

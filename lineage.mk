@@ -41,6 +41,3 @@ PRODUCT_NAME := lineage_hi6250
 PRODUCT_BRAND := huawei
 PRODUCT_MODEL := hi6250
 PRODUCT_MANUFACTURER := HUAWEI
-
-# Meticulus
-$(call inherit-product, device/huawei/hi6250/meticulus.mk)

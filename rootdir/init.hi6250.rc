@@ -14,7 +14,6 @@ import /init.post-fs-data.rc
 import /init.balong_modem.rc
 import /init.tee.rc
 import /init.charger.rc
-import /init.meticulus.rc
 
 on early-boot
     write /sys/block/dm-0/queue/read_ahead_kb 2048
