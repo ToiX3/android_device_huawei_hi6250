@@ -37,7 +37,10 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     libcopybit_wrapper \
-    Snap \
+
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
 
 # Codecs
 PRODUCT_COPY_FILES += \
@@ -138,6 +141,10 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libshim
+
+# Snap
+PRODUCT_PACKAGES += \
+    Snap
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
