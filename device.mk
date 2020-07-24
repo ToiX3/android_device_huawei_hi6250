@@ -1,5 +1,5 @@
 #
-# Copyright 2020 The Android Open Source Project
+# Copyright 2020 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,15 +14,7 @@
 # limitations under the License.
 #
 
-# This contains the module build definitions for the hardware-specific
-# components for this device.
-#
-# As much as possible, those components should be built unconditionally,
-# with device-specific names to avoid collisions, to avoid device-specific
-# bitrot and build breakages. Building a component unconditionally does
-# *not* include it on all devices, so it is safe even with hardware-specific
-# components.
-
+# Inherit Vendor Blobs
 $(call inherit-product, vendor/huawei/hi6250/hi6250-vendor.mk)
 
 # AAPT
@@ -32,10 +24,8 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # ADB
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
-    ro.allow.mock.location=1 \
     ro.adb.secure=0 \
-    persist.sys.usb.config=adb \
-    sys.usb.configfs=1
+    persist.sys.usb.config=adb,mtp
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -53,12 +43,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    $(LOCAL_PATH)/configs/mediacodecs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/mediacodecs/media_profiles_was.xml:system/etc/media_profiles_was.xml \
+    $(LOCAL_PATH)/configs/mediacodecs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Configs
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${LOCAL_PATH}/configs,system/)
-    
 # Graphics
 PRODUCT_PACKAGES += \
     hwcomposer.hi6250 \
@@ -74,15 +63,6 @@ PRODUCT_PACKAGES += \
 # Display
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
-
-# File System
-PRODUCT_PACKAGES += \
-    mkuserimg.sh \
-    mkyaffs2image \
-
-# Live Wallpapers
-PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -132,6 +112,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level-0.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    $(LOCAL_PATH)/configs/permissions/android.hardware.huawei.xml:system/etc/permissions/android.hardware.huawei.xml
 
 # Power
 PRODUCT_PACKAGES += \
@@ -158,12 +139,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim
 
+# USB
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    sys.usb.configfs=1 \
+    sys.usb.controller=hisi-usb-otg
+
 # Wifi
 PRODUCT_PACKAGES += \
     hostapd_cli
 
 # Zygote
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.zygote=zygote64_32 
-    
-    
+    ro.zygote=zygote64_32

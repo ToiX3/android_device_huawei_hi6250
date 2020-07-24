@@ -1,3 +1,7 @@
+#
+# system.prop for hi6250
+#
+
 # Bluetooth
 persist.sys.noble=true
 ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
