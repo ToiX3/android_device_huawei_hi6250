@@ -45,5 +45,5 @@ do
 done
 }
 
-clear_set cm
+clear_set lineage
 clear_set common
