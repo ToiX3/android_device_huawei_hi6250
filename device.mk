@@ -65,7 +65,7 @@ PRODUCT_PACKAGES += \
 
 # DeviceSettings
 PRODUCT_PACKAGES += \
-    HuaweiSettings
+    Extras
 
 # Display
 TARGET_SCREEN_HEIGHT := 1920
