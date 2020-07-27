@@ -72,6 +72,9 @@ persist.sys.google_avc_enc=0
 persist.sys.sr_google_avc_enc=1
 ro.config.hw_music_lp=true
 
+# OTA
+cm.updater.uri=https://raw.githubusercontent.com/GG2501YT/lineage_ota/master/hi6250_nougat.json
+
 # RIL
 ro.config.client_number=1
 ro.config.modem_number=1
